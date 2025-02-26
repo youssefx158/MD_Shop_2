@@ -1,0 +1,116 @@
+/* العام للتصميم */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    direction: rtl;
+    background: #e0f7fa;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* تأثير فقاعات الخلفية */
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(0, 150, 199, 0.2);
+    border-radius: 50%;
+    animation: rise 10s infinite;
+  }
+  @keyframes rise {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-1000px) scale(1);
+      opacity: 0;
+    }
+  }
+  
+  /* حاوية الصفحة */
+  .container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* رأس الصفحة */
+  header {
+    margin-bottom: 20px;
+  }
+  
+  #mdshop {
+    font-size: 48px;
+    color: #007fa3;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* تأثير عند hover */
+  #mdshop:hover {
+    transform: scale(1.1);
+  }
+  
+  /* نموذج تسجيل الدخول */
+  .login-form {
+    background: #ffffffcc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px;
+    color: #007fa3;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: right;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #007fa3;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #007fa3;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    background: #007fa3;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background: #005f75;
+  }
+  
+  .switch-page {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .switch-page a {
+    color: #007fa3;
+    text-decoration: none;
+  }
+  
+  .switch-page a:hover {
+    text-decoration: underline;
+  }

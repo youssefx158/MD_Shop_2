@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>انشاء حساب - MD Shop</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="mdshop">MD Shop</h1>
+    </header>
+    <div class="signup-form">
+      <h2>انشاء حساب جديد</h2>
+      <form id="signupForm" method="POST" action="/signup">
+        <div class="form-group">
+          <label for="firstName">الاسم الأول</label>
+          <input type="text" id="firstName" name="firstName" placeholder="ادخل الاسم الأول" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">الاسم الثاني</label>
+          <input type="text" id="lastName" name="lastName" placeholder="ادخل الاسم الثاني" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">رقم الهاتف</label>
+          <input type="text" id="phone" name="phone" placeholder="ادخل رقم الهاتف" required>
+        </div>
+        <div class="form-group">
+          <label for="email">الايميل</label>
+          <input type="email" id="email" name="email" placeholder="ادخل الايميل" required>
+        </div>
+        <div class="form-group">
+          <label for="password">الباسورد</label>
+          <input type="password" id="password" name="password" placeholder="ادخل الباسورد" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">تكرار الباسورد</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="كرر الباسورد" required>
+        </div>
+        <button type="submit">انشاء حساب</button>
+      </form>
+      <p class="switch-page">هل لديك حساب بالفعل؟ <a href="login.html">العودة لتسجيل الدخول</a></p>
+    </div>
+  </div>
+  <script src="signup.js"></script>
+</body>
+</html>
