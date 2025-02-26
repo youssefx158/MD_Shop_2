@@ -1,0 +1,74 @@
+/* common.css - التصميم العام لموقع MD Shop */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  background: #e0f7fa;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+#mdshop {
+  font-size: 48px;
+  color: #007fa3;
+  cursor: pointer;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* تأثير الفقاعات الخلفية */
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(0,150,199,0.2);
+  border-radius: 50%;
+  animation: rise 10s infinite;
+}
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-1000px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* تنسيق النماذج */
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #007fa3;
+}
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #007fa3;
+  border-radius: 5px;
+}
+
+/* تنسيق الأزرار */
+button {
+  background: #007fa3;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #005f75;
+}
