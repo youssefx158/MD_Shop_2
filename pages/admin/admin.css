@@ -1,66 +1,49 @@
-/* تصميم صفحة الأدمن */
+/* أنماط لوحة الأدمن - التصميم مطابق لباقي صفحات الموقع */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #87ceeb;
-    overflow: hidden;
-    position: relative;
-  }
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    z-index: 2;
-  }
-  #mdshop {
-    font-size: 3rem;
-    color: #87CEFA;
-    cursor: pointer;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  #mdshop:hover {
-    transform: scale(1.2);
-    color: #ffffff;
-  }
-  .content {
-    text-align: center;
-    padding: 20px;
-    margin-top: 100px;
-  }
-  .bubble-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .bubble-container::before,
-  .bubble-container::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    background: rgba(255,255,255,0.7);
-    border-radius: 50%;
-    animation: bubble 5s infinite ease-in;
-  }
-  .bubble-container::before {
-    left: 10%;
-    width: 20px;
-    height: 20px;
-  }
-  .bubble-container::after {
-    right: 20%;
-    width: 15px;
-    height: 15px;
-    animation-duration: 4s;
-  }
-  @keyframes bubble {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
-  }
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f7f7;
+}
+header {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+#mdshop {
+  font-size: 2.8rem;
+  cursor: pointer;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+#mdshop:hover {
+  transform: scale(1.15);
+}
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+  gap: 15px;
+  padding: 20px;
+}
+.admin-menu button {
+  width: 250px;
+  padding: 15px;
+  font-size: 1.1rem;
+  background: #007acc;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.admin-menu button:hover {
+  background: #005f99;
+  transform: scale(1.05);
+}

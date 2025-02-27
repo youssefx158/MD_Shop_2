@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>اداره المنتجات - MD Shop</title>
+  <base href="/pages/admin/products/">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+  <header>
+    <h1 id="mdshop">MD Shop</h1>
+  </header>
+  <div class="products-container">
+    <div class="top-bar">
+      <h2>اداره المنتجات</h2>
+      <button id="addProductBtn" class="add-btn">+</button>
+    </div>
+    <!-- النافذة المنبثقة لإضافة/تعديل المنتج -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h3 id="modalTitle">اضافة منتج</h3>
+        <form id="productForm">
+          <label>اسم المنتج:</label>
+          <input type="text" name="productName" required>
+          <label>وصف المنتج:</label>
+          <textarea name="productDesc" required></textarea>
+          <label>المقاسات:</label>
+          <div class="dynamic-input" id="sizesContainer">
+            <input type="text" id="sizeInput" placeholder="اكتب مقاس">
+            <button type="button" id="addSizeBtn">+</button>
+            <div id="sizesList"></div>
+          </div>
+          <label>الالوان:</label>
+          <div class="dynamic-input" id="colorsContainer">
+            <input type="text" id="colorInput" placeholder="اكتب لون">
+            <button type="button" id="addColorBtn">+</button>
+            <div id="colorsList"></div>
+          </div>
+          <label>السعر:</label>
+          <div class="price-input">
+            <input type="number" name="price" step="0.01" required>
+            <span>ج</span>
+          </div>
+          <label>صور المنتج:</label>
+          <div id="imagesContainer">
+            <input type="file" id="imageInput" accept="image/*" multiple>
+            <div id="previewImages"></div>
+          </div>
+          <button type="submit" id="saveProductBtn" class="submit-btn">اضافة منتج</button>
+        </form>
+      </div>
+    </div>
+    <!-- قائمة المنتجات -->
+    <div id="productsList">
+      <!-- ستظهر بطاقات المنتجات هنا -->
+    </div>
+  </div>
+  <script src="products.js"></script>
+</body>
+</html>
