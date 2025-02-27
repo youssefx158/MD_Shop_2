@@ -1,16 +1,24 @@
-// تأثيرات بسيطة على صفحة تسجيل الدخول
+// Interactive effects for the MD Shop logo on the Login page
 document.addEventListener('DOMContentLoaded', () => {
-    const logo = document.querySelector('.logo');
-    logo.addEventListener('mouseover', () => {
-      logo.style.transform = 'scale(1.1)';
-    });
-    logo.addEventListener('mouseout', () => {
-      logo.style.transform = 'scale(1)';
-    });
-    logo.addEventListener('click', () => {
-      logo.style.transform = 'rotate(360deg)';
-      setTimeout(() => {
-        logo.style.transform = 'rotate(0deg)';
-      }, 300);
-    });
+  const logo = document.querySelector('.logo');
+
+  logo.addEventListener('mouseover', () => {
+    if (!logo.classList.contains('burst')) {
+      logo.classList.add('inflated');
+    }
   });
+
+  logo.addEventListener('mouseout', () => {
+    if (!logo.classList.contains('burst')) {
+      logo.classList.remove('inflated');
+    }
+  });
+
+  logo.addEventListener('click', () => {
+    logo.classList.remove('inflated');
+    logo.classList.add('burst');
+    logo.addEventListener('animationend', () => {
+      logo.classList.remove('burst');
+    }, { once: true });
+  });
+});

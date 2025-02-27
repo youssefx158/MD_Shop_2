@@ -2,38 +2,49 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>إنشاء حساب - MD Shop</title>
-  <link rel="stylesheet" href="/register/register.css">
-  <script src="/register/register.js" defer></script>
+  <title>إنشاء حساب جديد - MD Shop</title>
+  <link rel="stylesheet" href="/static/register/register.css">
+  <script src="/static/register/register.js" defer></script>
 </head>
 <body>
+  <!-- Background bubbles -->
+  <div class="bubbles">
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+    <span class="bubble"></span>
+  </div>
+  
+  <!-- Logo at the top -->
+  <header>
+    <h1 class="logo" tabindex="0">MD Shop</h1>
+  </header>
+  
+  <!-- Registration form container -->
   <div class="container">
-    <header>
-      <h1 class="logo" tabindex="0">MD Shop</h1>
-    </header>
-    <div class="register-form">
-      <h2>إنشاء حساب جديد</h2>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="messages">
-            {% for category, message in messages %}
-              <p class="{{ category }}">{{ message }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
-      <form action="/register" method="POST">
+    <div class="form-container">
+      <form action="/register" method="POST" class="register-form">
         <input type="text" name="first_name" placeholder="الاسم الأول" required>
-        <input type="text" name="last_name" placeholder="الاسم الثاني" required>
+        <input type="text" name="last_name" placeholder="الاسم الاخير" required>
         <input type="tel" name="phone" placeholder="رقم الهاتف" required>
         <input type="email" name="email" placeholder="الايميل" required>
         <input type="password" name="password" placeholder="الباسورد" required>
-        <input type="password" name="confirm_password" placeholder="تأكيد الباسورد" required>
+        <input type="password" name="confirm_password" placeholder="تكرار الباسورد" required>
         <button type="submit">إنشاء حساب</button>
+        <div class="links">
+          <a href="/login">العودة لتسجيل الدخول</a>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="messages">
+              {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
       </form>
-      <p class="link">
-        <a href="/login">العودة لتسجيل الدخول</a>
-      </p>
     </div>
   </div>
 </body>
