@@ -2,12 +2,12 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>تسجيل الدخول - MD Shop</title>
-  <link rel="stylesheet" href="/login/login.css">
-  <script src="/login/login.js" defer></script>
+  <title>إنشاء حساب جديد - MD Shop</title>
+  <link rel="stylesheet" href="/register/register.css">
+  <script src="/register/register.js" defer></script>
 </head>
 <body>
-  <!-- فقعات الخلفية لعمل تصميم حلو وشكل متحرك -->
+  <!-- فقعات الخلفية -->
   <div class="bubbles">
     <span class="bubble"></span>
     <span class="bubble"></span>
@@ -20,16 +20,20 @@
   <header>
     <h1 class="logo" tabindex="0">MD Shop</h1>
   </header>
-
-  <!-- نموذج تسجيل الدخول الموجود في منتصف الصفحة مع تصميم جذاب -->
+  
+  <!-- نموذج التسجيل -->
   <div class="container">
     <div class="form-container">
-      <form action="/login" method="POST" class="login-form">
+      <form action="/register" method="POST" class="register-form">
+        <input type="text" name="first_name" placeholder="الاسم الأول" required>
+        <input type="text" name="last_name" placeholder="الاسم الاخير" required>
+        <input type="tel" name="phone" placeholder="رقم الهاتف" required>
         <input type="email" name="email" placeholder="الايميل" required>
         <input type="password" name="password" placeholder="الباسورد" required>
-        <button type="submit">تسجيل الدخول</button>
+        <input type="password" name="confirm_password" placeholder="تكرار الباسورد" required>
+        <button type="submit">إنشاء حساب</button>
         <div class="links">
-          <a href="/register">إنشاء حساب جديد</a>
+          <a href="/login">العودة لتسجيل الدخول</a>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
