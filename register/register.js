@@ -1,4 +1,4 @@
-// Interactive effects for the MD Shop logo on the Registration page
+// تأثيرات تفاعلية لشعار MD Shop في صفحة التسجيل
 document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
 

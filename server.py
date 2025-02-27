@@ -2,30 +2,53 @@ import os
 import json
 from flask import Flask, render_template, request, redirect, url_for, flash
 
-# إعداد التطبيق لاستخدام مجلد "MD-Shop-2" كقاعدة للملفات الثابتة والقوالب
-app = Flask(__name__, template_folder="MD-Shop-2", static_folder="MD-Shop-2")
+# هنا احنا عايزين نربط كل ملفات التصميم والواجهات مع بعض
+# هنا التطبيق بيستخدم مجلد "MD-Shop-2" كجذر للقوالب (templates) والملفات الثابتة (static)
+# تأكد إن هيكل المشروع بالشكل ده:
+# MD-Shop-2/
+# ├── server.py
+# ├── data/
+# │     └── accounts.json
+# ├── login/
+# │     ├── login.html
+# │     ├── login.css
+# │     └── login.js
+# └── register/
+#       ├── register.html
+#       ├── register.css
+#       └── register.js
+
+app = Flask(__name__, template_folder=".", static_folder=".")
 app.secret_key = 'your_secret_key_here'
 
-# التأكد من وجود مجلد data لتخزين معلومات الحسابات
+# التأكد من وجود مجلد data لتخزين معلومات الحسابات بصيغة JSON
 DATA_DIR = 'data'
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
+
 ACCOUNTS_FILE = os.path.join(DATA_DIR, 'accounts.json')
 
-# في حال عدم وجود ملف accounts.json، نقوم بإنشاء ملف JSON فارغ (قائمة فارغة)
+# إذا لم يكن ملف accounts.json موجوداً، ننشئ ملف فارغ يحتوي على قائمة فارغة
 if not os.path.exists(ACCOUNTS_FILE):
     with open(ACCOUNTS_FILE, 'w', encoding="utf-8") as f:
         json.dump([], f, ensure_ascii=False, indent=4)
 
 def read_accounts():
     """قراءة الحسابات من ملف JSON"""
-    with open(ACCOUNTS_FILE, 'r', encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(ACCOUNTS_FILE, 'r', encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"خطأ عند قراءة الحسابات: {e}")
+        return []
 
 def write_accounts(accounts):
-    """كتابة الحسابات إلى ملف JSON"""
-    with open(ACCOUNTS_FILE, 'w', encoding="utf-8") as f:
-        json.dump(accounts, f, ensure_ascii=False, indent=4)
+    """كتابة الحسابات في ملف JSON"""
+    try:
+        with open(ACCOUNTS_FILE, 'w', encoding="utf-8") as f:
+            json.dump(accounts, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"خطأ عند كتابة الحسابات: {e}")
 
 @app.route('/')
 def index():
@@ -33,6 +56,7 @@ def index():
 
 @app.route('/login', methods=['GET'])
 def login_page():
+    # تأكد إن ملف login/login.html موجود جوا مجلد MD-Shop-2
     return render_template('login/login.html')
 
 @app.route('/login', methods=['POST'])
@@ -41,8 +65,7 @@ def login():
     password = request.form.get('password')
     accounts = read_accounts()
     found = False
-
-    # التحقق من وجود الحساب من خلال ملف JSON
+    
     for account in accounts:
         if account.get("email") == email and account.get("password") == password:
             found = True
@@ -57,10 +80,12 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return "<h1>لوحة التحكم</h1><p>مرحبا بك!</p>"
+    # هنا ممكن تضيف المزيد من تصميم لوحة التحكم حسب رغبتك
+    return "<h1>لوحة التحكم</h1><p>مرحبا بك في لوحة التحكم!</p>"
 
 @app.route('/register', methods=['GET'])
 def register_page():
+    # تأكد إن ملف register/register.html موجود جوا مجلد MD-Shop-2
     return render_template('register/register.html')
 
 @app.route('/register', methods=['POST'])
@@ -71,16 +96,15 @@ def register():
     email = request.form.get('email')
     password = request.form.get('password')
     confirm_password = request.form.get('confirm_password')
-    
+
     if password != confirm_password:
         flash("الباسورد وتأكيده غير متطابقين!", "error")
         return redirect(url_for('register_page'))
     
     accounts = read_accounts()
-    # التأكد من عدم وجود ايميل مسجل مسبقاً
     for account in accounts:
         if account.get("email") == email:
-            flash("الحساب بهذا الايميل موجود بالفعل!", "error")
+            flash("الحساب بهذا الايميل مسجل مسبقاً!", "error")
             return redirect(url_for('register_page'))
     
     new_account = {
