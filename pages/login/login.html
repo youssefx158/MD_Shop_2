@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>MD Shop - تسجيل الدخول</title>
+  <!-- تعيين الأساس إلى هذا المجلد لضمان تحميل ملفات CSS/JS بشكل صحيح -->
+  <base href="/pages/login/">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="bubble-container"></div>
+  <header>
+    <h1 id="mdshop">MD Shop</h1>
+  </header>
+  <div class="form-container">
+    <form action="/login" method="POST">
+      <h2>تسجيل الدخول</h2>
+      <input type="text" name="username" placeholder="اسم المستخدم" required>
+      <input type="password" name="password" placeholder="كلمة المرور" required>
+      <button type="submit">دخول</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>
