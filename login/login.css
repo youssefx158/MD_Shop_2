@@ -1,0 +1,101 @@
+/* Improved Marine Design for Login Page */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1e3d59; /* Marine blue */
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+    animation: bubble 15s linear infinite;
+    z-index: 0;
+  }
+  
+  @keyframes bubble {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100vh); }
+  }
+  
+  header {
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    font-size: 3em;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .logo:hover {
+    transform: scale(1.1);
+  }
+  
+  .login-form {
+    z-index: 1;
+    background: rgba(255,255,255,0.95);
+    color: #1e3d59;
+    width: 320px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 12px;
+    background: #1e3d59;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .login-form button:hover {
+    background: #16324f;
+  }
+  
+  .login-form .link {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .login-form .link a {
+    text-decoration: none;
+    color: #1e3d59;
+    font-weight: bold;
+  }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول - MD Shop</title>
+  <link rel="stylesheet" href="login.css">
+  <script src="login.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="logo" tabindex="0">MD Shop</h1>
+    </header>
+    <div class="login-form">
+      <h2>تسجيل الدخول</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="messages">
+            {% for category, message in messages %}
+              <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="الايميل" required>
+        <input type="password" name="password" placeholder="الباسورد" required>
+        <button type="submit">دخول</button>
+      </form>
+      <p class="link">
+        <a href="/register">إنشاء حساب جديد</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
