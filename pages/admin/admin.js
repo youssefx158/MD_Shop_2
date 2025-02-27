@@ -1,4 +1,4 @@
-// تأثيرات صفحة الأدمن - تأثير كلمة MD Shop
+// تأثيرات صفحة الأدمن - تأثير على كلمة MD Shop
 document.addEventListener("DOMContentLoaded", function() {
     const mdshop = document.getElementById("mdshop");
     if (mdshop) {

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>MD Shop - تسجيل الدخول</title>
-  <!-- تعيين الأساس إلى هذا المجلد لضمان تحميل ملفات CSS/JS بشكل صحيح -->
   <base href="/pages/login/">
   <link rel="stylesheet" href="login.css">
 </head>
@@ -17,8 +16,11 @@
       <h2>تسجيل الدخول</h2>
       <input type="text" name="username" placeholder="اسم المستخدم" required>
       <input type="password" name="password" placeholder="كلمة المرور" required>
-      <button type="submit">دخول</button>
+      <button type="submit">تسجيل الدخول</button>
     </form>
+    <div class="small-btn-container">
+      <a href="/register">إنشاء حساب</a>
+    </div>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul class="flashes">

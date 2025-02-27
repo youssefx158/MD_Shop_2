@@ -6,8 +6,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 def ensure_file(required_path):
     """
     يتأكد من وجود الملف في المسار المطلوب.
-    - إذا كان الملف موجودًا في مكان آخر داخل المشروع، يتم نقله إلى المسار الصحيح.
-    - إذا لم يكن موجودًا، يتم إنشاؤه كملف فارغ.
+    إذا وُجد الملف في مسار آخر داخل المشروع فيتم نقله.
+    وإذا لم يكن موجودًا، يتم إنشاؤه كملف فارغ.
     """
     directory = os.path.dirname(required_path)
     if not os.path.exists(directory):
@@ -16,10 +16,8 @@ def ensure_file(required_path):
     if os.path.exists(required_path):
         return
 
-    # البحث عن الملف في المشروع بناءً على الاسم فقط
     found_path = None
     for root, dirs, files in os.walk("."):
-        # تجاهل المجلدات المخفية وبيئات العمل الافتراضية
         if any(part.startswith('.') for part in root.split(os.sep)) or "venv" in root:
             continue
         for file in files:
@@ -39,7 +37,7 @@ def ensure_file(required_path):
 
 def setup_project_structure():
     """
-    ينشئ هيكل المشروع المطلوب ويتأكد من وجود جميع الملفات في أماكنها.
+    ينشئ هيكل المشروع المطلوب مع التأكد من وجود الملفات بأماكنها.
     """
     required_files = [
         # ملفات البيانات
@@ -49,6 +47,10 @@ def setup_project_structure():
         "pages/login/login.html",
         "pages/login/login.css",
         "pages/login/login.js",
+        # صفحة إنشاء الحساب
+        "pages/register/register.html",
+        "pages/register/register.css",
+        "pages/register/register.js",
         # صفحة الأدمن
         "pages/admin/admin.html",
         "pages/admin/admin.css",
@@ -65,9 +67,9 @@ def setup_project_structure():
 setup_project_structure()
 
 app = Flask(__name__, template_folder="pages")
-app.secret_key = "سري جداً"  # تأكد من تغيير المفتاح في بيئة الإنتاج
+app.secret_key = "سري جداً"  # غير المفتاح في الإنتاج
 
-# تعريف مسارات لتقديم ملفات الصفحات (CSS/JS وغيرها) من مجلد pages
+# لتقديم ملفات الصفحات مثل CSS و JS من داخل مجلد pages
 @app.route("/pages/<path:filename>")
 def pages_files(filename):
     return send_from_directory("pages", filename)
@@ -91,7 +93,6 @@ def save_data(filepath, data):
 
 @app.route("/")
 def home():
-    # تحميل صفحة تسجيل الدخول من مجلد login
     return render_template("login/login.html")
 
 @app.route("/login", methods=["POST"])
@@ -99,13 +100,11 @@ def login():
     username = request.form.get("username", "").strip()
     password = request.form.get("password", "").strip()
 
-    # التحقق من حساب الأدمن (يتم إدخال حسابات الأدمن عبر تعديل ملف data/admin.json)
     admins = load_data(ADMIN_DATA)
     for admin in admins:
         if admin.get("username") == username and admin.get("password") == password:
             return redirect(url_for("admin_page"))
 
-    # التحقق من حساب المستخدم (الأعضاء)
     members = load_data(MEMBER_DATA)
     for member in members:
         if member.get("username") == username:
@@ -114,17 +113,45 @@ def login():
             else:
                 flash("كلمة المرور غير صحيحة.")
                 return redirect(url_for("home"))
-
-    # إذا لم يكن المستخدم موجوداً نضيفه كعضو جديد
+    
     if username and password:
         new_member = {"username": username, "password": password}
         members.append(new_member)
         save_data(MEMBER_DATA, members)
         flash("تم تسجيل حساب جديد بنجاح")
         return redirect(url_for("user_page"))
-
+    
     flash("يرجى إدخال معلومات صحيحة.")
     return redirect(url_for("home"))
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        first_name = request.form.get("first_name", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        phone = request.form.get("phone", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
+        confirm_password = request.form.get("confirm_password", "").strip()
+
+        if password != confirm_password:
+            flash("كلمة المرور وتأكيدها غير متطابقين.")
+            return redirect(url_for("register"))
+        
+        members = load_data(MEMBER_DATA)
+        new_member = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "phone": phone,
+            "email": email,
+            "username": email,
+            "password": password
+        }
+        members.append(new_member)
+        save_data(MEMBER_DATA, members)
+        flash("تم إنشاء الحساب بنجاح.")
+        return redirect(url_for("user_page"))
+    return render_template("register/register.html")
 
 @app.route("/admin")
 def admin_page():

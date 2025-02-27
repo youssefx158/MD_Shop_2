@@ -1,4 +1,4 @@
-// تأثيرات صفحة المستخدم - تأثير كلمة MD Shop
+// تأثيرات صفحة المستخدم - تأثير على كلمة MD Shop
 document.addEventListener("DOMContentLoaded", function() {
     const mdshop = document.getElementById("mdshop");
     if (mdshop) {

@@ -4,8 +4,8 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #87ceeb;
-    position: relative;
     overflow: hidden;
+    position: relative;
   }
   
   header {
@@ -24,11 +24,11 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
+    background: rgba(255,255,255,0.95);
+    padding: 40px 30px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    width: 300px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    width: 320px;
     text-align: center;
   }
   
@@ -49,16 +49,31 @@ body {
     width: 100%;
     padding: 10px;
     background-color: #0066cc;
-    color: white;
+    color: #fff;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
     transition: background-color 0.3s;
   }
   
   .form-container button:hover {
     background-color: #004c99;
+  }
+  
+  .small-btn-container {
+    margin-top: 10px;
+  }
+  
+  .small-btn-container a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #0066cc;
+  }
+  
+  .small-btn-container a:hover {
+    text-decoration: underline;
   }
   
   .flashes {
@@ -84,7 +99,7 @@ body {
     content: "";
     position: absolute;
     top: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255,255,255,0.7);
     border-radius: 50%;
     animation: bubble 5s infinite ease-in;
   }
@@ -103,12 +118,6 @@ body {
   }
   
   @keyframes bubble {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-110vh) scale(0.5);
-      opacity: 0;
-    }
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
   }

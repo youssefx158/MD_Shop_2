@@ -1,4 +1,4 @@
-// تأثيرات صفحة تسجيل الدخول - تأثير كلمة MD Shop
+// تأثيرات صفحة تسجيل الدخول - تأثير على كلمة MD Shop
 document.addEventListener("DOMContentLoaded", function() {
     const mdshop = document.getElementById("mdshop");
     if (mdshop) {

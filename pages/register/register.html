@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>MD Shop - إنشاء حساب</title>
+  <base href="/pages/register/">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="bubble-container"></div>
+  <header>
+    <h1 id="mdshop">MD Shop</h1>
+  </header>
+  <div class="form-container">
+    <form action="/register" method="POST">
+      <h2>إنشاء حساب</h2>
+      <input type="text" name="first_name" placeholder="الاسم الأول" required>
+      <input type="text" name="last_name" placeholder="الاسم الأخير" required>
+      <input type="text" name="phone" placeholder="رقم الهاتف" required>
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+      <input type="password" name="password" placeholder="كلمة المرور" required>
+      <input type="password" name="confirm_password" placeholder="تأكيد كلمة المرور" required>
+      <button type="submit">إنشاء حساب</button>
+    </form>
+    <div class="small-btn-container">
+      <a href="/">الرجوع إلى تسجيل الدخول</a>
+    </div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+  <script src="register.js"></script>
+</body>
+</html>
