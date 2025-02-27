@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let colors = [];
   let images = [];
 
-  // فتح النافذة المنبثقة لإضافة منتج جديد
   addProductBtn.addEventListener("click", function() {
     productModal.style.display = "block";
     document.getElementById("modalTitle").innerText = "اضافة منتج";
@@ -31,12 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("saveProductBtn").innerText = "اضافة منتج";
   });
 
-  // إغلاق النافذة المنبثقة
   closeModal.addEventListener("click", function() {
     productModal.style.display = "none";
   });
 
-  // إضافة مقاس
   addSizeBtn.addEventListener("click", function() {
     const value = sizeInput.value.trim();
     if (value) {
@@ -63,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // إضافة لون
   addColorBtn.addEventListener("click", function() {
     const value = colorInput.value.trim();
     if (value) {
@@ -90,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // عرض صور المنتج
   imageInput.addEventListener("change", function() {
     previewImages.innerHTML = "";
     images = [];
@@ -116,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // التعامل مع إرسال نموذج إضافة المنتج
   productForm.addEventListener("submit", function(e) {
     e.preventDefault();
     const formData = new FormData(productForm);
@@ -128,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
       price: formData.get("price"),
       images: images
     };
-    // هنا يتم إرسال بيانات المنتج إلى السيرفر لتخزينها في data/products.json إن لزم الأمر.
+    // هنا يمكنك إرسال بيانات المنتج إلى السيرفر لتخزينها في data/products.json إذا لزم الأمر.
     saveProduct(productData);
     productModal.style.display = "none";
   });
