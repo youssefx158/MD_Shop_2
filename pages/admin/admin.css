@@ -1,4 +1,4 @@
-/* Design for admin page */
+/* تصميم صفحة الأدمن */
 body {
     margin: 0;
     padding: 0;
@@ -8,13 +8,23 @@ body {
     position: relative;
   }
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding-top: 20px;
+    padding: 20px 0;
+    z-index: 2;
   }
   #mdshop {
     font-size: 3rem;
+    color: #87CEFA;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  #mdshop:hover {
+    transform: scale(1.2);
+    color: #ffffff;
   }
   .content {
     text-align: center;

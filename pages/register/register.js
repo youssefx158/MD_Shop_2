@@ -1,15 +1,7 @@
-// Registration page animations for MD Shop
+// تأثيرات صفحة إنشاء الحساب لتعديل سلوك شعار MD Shop
 document.addEventListener("DOMContentLoaded", function() {
     const mdshop = document.getElementById("mdshop");
     if (mdshop) {
-      mdshop.addEventListener("mouseover", function() {
-        mdshop.style.transform = "scale(1.2)";
-        mdshop.style.color = "#ff4500";
-      });
-      mdshop.addEventListener("mouseout", function() {
-        mdshop.style.transform = "scale(1)";
-        mdshop.style.color = "#2a2a2a";
-      });
       mdshop.addEventListener("click", function() {
         mdshop.style.transition = "transform 0.5s";
         mdshop.style.transform = "translateX(300px) scale(0.2)";

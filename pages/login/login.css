@@ -1,4 +1,4 @@
-/* Updated design for the login page */
+/* تصميم صفحة تسجيل الدخول */
 body {
     margin: 0;
     padding: 0;
@@ -8,7 +8,7 @@ body {
     position: relative;
   }
   
-  /* Fixed header at the top for the logo */
+  /* تثبيت الرأس وأسلوب الشعار */
   header {
     position: fixed;
     top: 0;
@@ -21,12 +21,18 @@ body {
   
   #mdshop {
     font-size: 3rem;
-    color: #2a2a2a; /* Change the color of the logo */
+    color: #ffffff; /* الشعار أبيض طوال الوقت */
     cursor: pointer;
-    transition: transform 0.3s, color 0.3s;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
   
-  /* Center the form container */
+  /* عند التمرير على الشعار */
+  #mdshop:hover {
+    transform: scale(1.2); /* يتنفخ */
+    /* يبقى لونه أبيض */
+  }
+  
+  /* مركزية نموذج تسجيل الدخول */
   .form-container {
     position: fixed;
     top: 50%;
@@ -92,7 +98,7 @@ body {
     color: red;
   }
   
-  /* Background bubbles */
+  /* فقاعات الخلفية */
   .bubble-container {
     position: fixed;
     top: 0;

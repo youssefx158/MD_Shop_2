@@ -1,4 +1,4 @@
-/* Updated design for the registration page */
+/* تصميم صفحة إنشاء الحساب */
 body {
     margin: 0;
     padding: 0;
@@ -20,12 +20,15 @@ body {
   
   #mdshop {
     font-size: 3rem;
-    color: #2a2a2a;
+    color: #87CEFA; /* أزرق فاتح */
     cursor: pointer;
-    transition: transform 0.3s, color 0.3s;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  #mdshop:hover {
+    transform: scale(1.2);
+    color: #ffffff;
   }
   
-  /* Center the form container */
   .form-container {
     position: fixed;
     top: 50%;
@@ -91,7 +94,7 @@ body {
     color: red;
   }
   
-  /* Background bubbles */
+  /* فقاعات الخلفية */
   .bubble-container {
     position: fixed;
     top: 0;

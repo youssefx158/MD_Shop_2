@@ -5,8 +5,9 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 
 def ensure_file(required_path):
     """
-    Ensure the file exists at the required path.
-    If found elsewhere in the project, move it; otherwise create an empty file.
+    يتأكد من وجود الملف في المسار المطلوب.
+    إذا وُجد الملف في مسار آخر داخل المشروع، يُنقل إلى المسار الصحيح.
+    وإذا لم يكن موجودًا، يُنشأ كملف فارغ.
     """
     directory = os.path.dirname(required_path)
     if not os.path.exists(directory):
@@ -35,7 +36,7 @@ def ensure_file(required_path):
 
 def setup_project_structure():
     """
-    Create the required project structure and ensure all necessary files exist.
+    ينشئ هيكل المشروع المطلوب ويتأكد من وجود كافة الملفات في أماكنها.
     """
     required_files = [
         "data/admin.json",
@@ -58,7 +59,7 @@ def setup_project_structure():
 
 def initialize_admin_account():
     """
-    Checks if the admin data file is empty and, if so, creates a default admin account.
+    يتحقق مما إذا كان ملف حسابات الأدمن فارغاً، وإذا كان كذلك ينشئ حساب أدمن افتراضي.
     """
     admin_data = load_data(ADMIN_DATA)
     if not admin_data:
@@ -66,13 +67,13 @@ def initialize_admin_account():
         admin_data.append(default_admin)
         save_data(ADMIN_DATA, admin_data)
 
-# Ensure project structure
+# تأكيد هيكل المشروع
 setup_project_structure()
 
 app = Flask(__name__, template_folder="pages")
-app.secret_key = "سري جداً"  # Change in production
+app.secret_key = "سري جداً"  # يجب تغييره في البيئة الإنتاجية
 
-# Serve static files from the pages folder (CSS/JS etc.)
+# لتقديم الملفات الثابتة (CSS/JS) من داخل مجلد pages
 @app.route("/pages/<path:filename>")
 def pages_files(filename):
     return send_from_directory("pages", filename)
@@ -99,26 +100,27 @@ def home():
 
 @app.route("/login", methods=["POST"])
 def login():
-    username = request.form.get("username", "").strip()
+    # الآن يتم استخدام البريد الإلكتروني وكلمة المرور فقط
+    email = request.form.get("email", "").strip()
     password = request.form.get("password", "").strip()
 
     admins = load_data(ADMIN_DATA)
     for admin in admins:
-        if admin.get("username") == username and admin.get("password") == password:
+        if admin.get("username") == email and admin.get("password") == password:
             return redirect(url_for("admin_page"))
     
     members = load_data(MEMBER_DATA)
     for member in members:
-        if member.get("username") == username:
+        if member.get("username") == email:
             if member.get("password") == password:
                 return redirect(url_for("user_page"))
             else:
                 flash("كلمة المرور غير صحيحة.")
                 return redirect(url_for("home"))
     
-    # If account doesn't exist, create a new member account
-    if username and password:
-        new_member = {"username": username, "password": password}
+    # إذا لم يكن الحساب موجوداً فإنه يُنشأ كحساب عضو جديد
+    if email and password:
+        new_member = {"username": email, "password": password}
         members.append(new_member)
         save_data(MEMBER_DATA, members)
         flash("تم تسجيل حساب جديد بنجاح")
@@ -147,7 +149,7 @@ def register():
             "last_name": last_name,
             "phone": phone,
             "email": email,
-            "username": email,  # Using email as username
+            "username": email,  # نستخدم البريد الإلكتروني كاسم مستخدم
             "password": password
         }
         members.append(new_member)
