@@ -1,4 +1,4 @@
-// تأثيرات صفحة الأدمن - تأثير على كلمة MD Shop
+// Admin page animations for MD Shop
 document.addEventListener("DOMContentLoaded", function() {
     const mdshop = document.getElementById("mdshop");
     if (mdshop) {
@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
         mdshop.style.transform = "scale(1)";
       });
       mdshop.addEventListener("click", function() {
-        mdshop.style.transform = "translateX(100px) scale(1.2)";
+        mdshop.style.transition = "transform 0.5s";
+        mdshop.style.transform = "translateX(300px) scale(0.2)";
         setTimeout(() => {
           mdshop.style.transform = "translateX(0) scale(1)";
         }, 500);

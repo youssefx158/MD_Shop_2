@@ -5,9 +5,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 
 def ensure_file(required_path):
     """
-    يتأكد من وجود الملف في المسار المطلوب.
-    إذا وُجد الملف في مسار آخر داخل المشروع فيتم نقله.
-    وإذا لم يكن موجودًا، يتم إنشاؤه كملف فارغ.
+    Ensure the file exists at the required path.
+    If found elsewhere in the project, move it; otherwise create an empty file.
     """
     directory = os.path.dirname(required_path)
     if not os.path.exists(directory):
@@ -28,7 +27,6 @@ def ensure_file(required_path):
                     break
         if found_path:
             break
-
     if found_path:
         shutil.move(found_path, required_path)
     else:
@@ -37,25 +35,20 @@ def ensure_file(required_path):
 
 def setup_project_structure():
     """
-    ينشئ هيكل المشروع المطلوب مع التأكد من وجود الملفات بأماكنها.
+    Create the required project structure and ensure all necessary files exist.
     """
     required_files = [
-        # ملفات البيانات
         "data/admin.json",
         "data/members.json",
-        # صفحة تسجيل الدخول
         "pages/login/login.html",
         "pages/login/login.css",
         "pages/login/login.js",
-        # صفحة إنشاء الحساب
         "pages/register/register.html",
         "pages/register/register.css",
         "pages/register/register.js",
-        # صفحة الأدمن
         "pages/admin/admin.html",
         "pages/admin/admin.css",
         "pages/admin/admin.js",
-        # صفحة المستخدم
         "pages/user/user.html",
         "pages/user/user.css",
         "pages/user/user.js"
@@ -63,18 +56,27 @@ def setup_project_structure():
     for path in required_files:
         ensure_file(path)
 
-# التأكد من هيكل المشروع
+def initialize_admin_account():
+    """
+    Checks if the admin data file is empty and, if so, creates a default admin account.
+    """
+    admin_data = load_data(ADMIN_DATA)
+    if not admin_data:
+        default_admin = {"username": "admin", "password": "admin123"}
+        admin_data.append(default_admin)
+        save_data(ADMIN_DATA, admin_data)
+
+# Ensure project structure
 setup_project_structure()
 
 app = Flask(__name__, template_folder="pages")
-app.secret_key = "سري جداً"  # غير المفتاح في الإنتاج
+app.secret_key = "سري جداً"  # Change in production
 
-# لتقديم ملفات الصفحات مثل CSS و JS من داخل مجلد pages
+# Serve static files from the pages folder (CSS/JS etc.)
 @app.route("/pages/<path:filename>")
 def pages_files(filename):
     return send_from_directory("pages", filename)
 
-# مسارات ملفات البيانات
 ADMIN_DATA = "data/admin.json"
 MEMBER_DATA = "data/members.json"
 
@@ -104,7 +106,7 @@ def login():
     for admin in admins:
         if admin.get("username") == username and admin.get("password") == password:
             return redirect(url_for("admin_page"))
-
+    
     members = load_data(MEMBER_DATA)
     for member in members:
         if member.get("username") == username:
@@ -114,6 +116,7 @@ def login():
                 flash("كلمة المرور غير صحيحة.")
                 return redirect(url_for("home"))
     
+    # If account doesn't exist, create a new member account
     if username and password:
         new_member = {"username": username, "password": password}
         members.append(new_member)
@@ -144,13 +147,13 @@ def register():
             "last_name": last_name,
             "phone": phone,
             "email": email,
-            "username": email,
+            "username": email,  # Using email as username
             "password": password
         }
         members.append(new_member)
         save_data(MEMBER_DATA, members)
-        flash("تم إنشاء الحساب بنجاح.")
-        return redirect(url_for("user_page"))
+        flash("تم إنشاء الحساب بنجاح. الرجاء تسجيل الدخول.")
+        return redirect(url_for("home"))
     return render_template("register/register.html")
 
 @app.route("/admin")
@@ -162,4 +165,5 @@ def user_page():
     return render_template("user/user.html")
 
 if __name__ == "__main__":
+    initialize_admin_account()
     app.run(debug=True)

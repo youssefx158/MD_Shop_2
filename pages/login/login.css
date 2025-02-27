@@ -1,4 +1,4 @@
-/* تصميم صفحة تسجيل الدخول */
+/* Updated design for the login page */
 body {
     margin: 0;
     padding: 0;
@@ -8,19 +8,27 @@ body {
     position: relative;
   }
   
+  /* Fixed header at the top for the logo */
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
+    z-index: 2;
   }
   
   #mdshop {
     font-size: 3rem;
+    color: #2a2a2a; /* Change the color of the logo */
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s, color 0.3s;
   }
   
+  /* Center the form container */
   .form-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -30,6 +38,7 @@ body {
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     width: 320px;
     text-align: center;
+    z-index: 1;
   }
   
   .form-container h2 {
@@ -83,7 +92,7 @@ body {
     color: red;
   }
   
-  /* فقاعات الخلفية */
+  /* Background bubbles */
   .bubble-container {
     position: fixed;
     top: 0;
@@ -93,7 +102,6 @@ body {
     pointer-events: none;
     overflow: hidden;
   }
-  
   .bubble-container::before,
   .bubble-container::after {
     content: "";
@@ -103,20 +111,17 @@ body {
     border-radius: 50%;
     animation: bubble 5s infinite ease-in;
   }
-  
   .bubble-container::before {
     left: 10%;
     width: 20px;
     height: 20px;
   }
-  
   .bubble-container::after {
     right: 20%;
     width: 15px;
     height: 15px;
     animation-duration: 4s;
   }
-  
   @keyframes bubble {
     0% { transform: translateY(0) scale(1); opacity: 1; }
     100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
