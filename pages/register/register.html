@@ -8,24 +8,18 @@
 </head>
 <body>
   <div class="bubble-container"></div>
-  <!-- الشعار في الرأس فقط -->
-  <header>
-    <h1 id="mdshop">MD Shop</h1>
-  </header>
-  <div class="form-container">
+  <header><h1 id="mdshop">MD Shop</h1></header>
+  <div class="register-container">
+    <h2>إنشاء حساب</h2>
     <form action="/register" method="POST">
-      <h2>إنشاء حساب</h2>
       <input type="text" name="first_name" placeholder="الاسم الأول" required>
-      <input type="text" name="last_name" placeholder="الاسم الأخير" required>
+      <input type="text" name="last_name" placeholder="اسم العائلة" required>
       <input type="text" name="phone" placeholder="رقم الهاتف" required>
       <input type="email" name="email" placeholder="البريد الإلكتروني" required>
       <input type="password" name="password" placeholder="كلمة المرور" required>
       <input type="password" name="confirm_password" placeholder="تأكيد كلمة المرور" required>
-      <button type="submit">إنشاء حساب</button>
+      <button type="submit">إنشاء الحساب</button>
     </form>
-    <div class="small-btn-container">
-      <a href="/">الرجوع إلى تسجيل الدخول</a>
-    </div>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul class="flashes">

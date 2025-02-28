@@ -16,46 +16,59 @@
       <h2>اداره المنتجات</h2>
       <button id="addProductBtn" class="add-btn">+</button>
     </div>
-    <!-- النافذة المنبثقة لإضافة/تعديل المنتج -->
+    <!-- Product add/edit modal -->
     <div id="productModal" class="modal">
       <div class="modal-content">
         <span id="closeModal" class="close">&times;</span>
         <h3 id="modalTitle">اضافة منتج</h3>
-        <form id="productForm">
-          <label>اسم المنتج:</label>
-          <input type="text" name="productName" required>
-          <label>وصف المنتج:</label>
-          <textarea name="productDesc" required></textarea>
-          <label>المقاسات:</label>
-          <div class="dynamic-input" id="sizesContainer">
-            <input type="text" id="sizeInput" placeholder="اكتب مقاس">
-            <button type="button" id="addSizeBtn">+</button>
+        <form id="productForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>اسم المنتج:</label>
+            <input type="text" name="productName" required>
+          </div>
+          <div class="form-group">
+            <label>تفاصيل المنتج:</label>
+            <textarea name="productDesc" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>المقاسات:</label>
+            <div class="dynamic-input">
+              <input type="text" id="sizeInput" placeholder="اكتب مقاس">
+              <button type="button" id="addSizeBtn">+</button>
+            </div>
             <div id="sizesList"></div>
           </div>
-          <label>الالوان:</label>
-          <div class="dynamic-input" id="colorsContainer">
-            <input type="text" id="colorInput" placeholder="اكتب لون">
-            <button type="button" id="addColorBtn">+</button>
+          <div class="form-group">
+            <label>الالوان:</label>
+            <div class="dynamic-input">
+              <input type="text" id="colorInput" placeholder="اكتب لون">
+              <button type="button" id="addColorBtn">+</button>
+            </div>
             <div id="colorsList"></div>
           </div>
-          <label>السعر:</label>
-          <div class="price-input">
-            <input type="number" name="price" step="0.01" required>
-            <span>ج</span>
+          <div class="form-group">
+            <label>السعر:</label>
+            <div class="price-input">
+              <input type="number" name="price" step="0.01" required>
+              <span>ج</span>
+            </div>
           </div>
-          <label>صور المنتج:</label>
-          <div id="imagesContainer">
-            <input type="file" id="imageInput" accept="image/*" multiple>
+          <div class="form-group">
+            <label>صور المنتج:</label>
             <div id="previewImages"></div>
+            <div id="imagesContainer">
+              <input type="file" id="imageInput" accept="image/*" multiple style="display: none;">
+              <button type="button" id="addImageBtn" class="image-btn">اختر صورة</button>
+            </div>
           </div>
-          <button type="submit" id="saveProductBtn" class="submit-btn">اضافة منتج</button>
+          <div class="form-group">
+            <button type="submit" id="saveProductBtn" class="submit-btn">اضافة منتج</button>
+          </div>
         </form>
       </div>
     </div>
-    <!-- قائمة المنتجات -->
-    <div id="productsList">
-      <!-- ستظهر بطاقات المنتجات هنا -->
-    </div>
+    <!-- Products list -->
+    <div id="productsList"></div>
   </div>
   <script src="products.js"></script>
 </body>

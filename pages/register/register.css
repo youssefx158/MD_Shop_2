@@ -1,100 +1,12 @@
-/* تصميم صفحة إنشاء الحساب */
+/* Shared CSS for all pages */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   background-color: #87ceeb;
-  overflow: hidden;
+  overflow-y: auto;
   position: relative;
 }
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 20px 0;
-  z-index: 2;
-}
-
-#mdshop {
-  font-size: 3rem;
-  color: #ffffff; /* الشعار أبيض دائمًا */
-  cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-#mdshop:hover {
-  transform: scale(1.2);
-}
-
-.form-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.95);
-  padding: 35px 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  width: 340px;
-  text-align: center;
-  z-index: 1;
-}
-
-.form-container h2 {
-  margin-bottom: 18px;
-}
-
-.form-container input {
-  width: 100%;
-  padding: 9px;
-  margin: 8px 0;
-  font-size: 0.95rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.form-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #0066cc;
-  color: #fff;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 12px;
-  transition: background-color 0.3s;
-}
-
-.form-container button:hover {
-  background-color: #004c99;
-}
-
-.small-btn-container {
-  margin-top: 10px;
-}
-
-.small-btn-container a {
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: #0066cc;
-}
-
-.small-btn-container a:hover {
-  text-decoration: underline;
-}
-
-.flashes {
-  margin-top: 15px;
-  list-style: none;
-  padding: 0;
-  color: red;
-}
-
-/* فقاعات الخلفية */
 .bubble-container {
   position: fixed;
   top: 0;
@@ -104,7 +16,6 @@ header {
   pointer-events: none;
   overflow: hidden;
 }
-
 .bubble-container::before,
 .bubble-container::after {
   content: "";
@@ -114,21 +25,84 @@ header {
   border-radius: 50%;
   animation: bubble 5s infinite ease-in;
 }
-
 .bubble-container::before {
   left: 10%;
   width: 20px;
   height: 20px;
 }
-
 .bubble-container::after {
   right: 20%;
   width: 15px;
   height: 15px;
   animation-duration: 4s;
 }
-
 @keyframes bubble {
   0% { transform: translateY(0) scale(1); opacity: 1; }
   100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
+}
+header {
+  background: none;
+  text-align: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+#mdshop {
+  font-size: 2.8rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 1s ease, opacity 0.5s ease;
+}
+#mdshop:hover {
+  transform: scale(1.1);
+}
+
+.register-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.95);
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  width: 350px;
+  text-align: center;
+  z-index: 101;
+}
+.register-container h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+.register-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.register-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0066cc;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+.register-container button:hover {
+  background-color: #004c99;
+}
+.flashes {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+  color: red;
 }
